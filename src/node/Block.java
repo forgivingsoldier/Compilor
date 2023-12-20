@@ -13,6 +13,13 @@ public class Block {
         this.rightBrace = rightBrace;
     }
 
+    //llvm使用
+    public int forstmt1Label;
+    public int condLabel;
+    public int forstmt2Label;
+    public int stmtLabel;
+    public int nextLabel;
+
     public void printToFile() {
         filewritter.printToken("LBRACE","{");
         for (BlockItem blockItem : blockItems) {

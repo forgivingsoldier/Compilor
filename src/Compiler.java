@@ -13,8 +13,6 @@ import tool.*;
 
 public class Compiler {
     public static void main(String[] args) {
-        File filepath =new File("testfile.txt");
-        String str;
         try {
             InputStream in = new BufferedInputStream(Files.newInputStream(Paths.get("testfile.txt")));
             Scanner scanner = new Scanner(in);
@@ -32,17 +30,19 @@ public class Compiler {
             lexer.printTokens();
 
             parser parser=new parser(lexer.tokens);
-            System.out.println("开始语法分析");
             CompUnit compUnit=parser.analyze();
-            System.out.println("语法分析完成");
 
             ErrorHandling errorHandling=ErrorHandling.getErrorHandling();
             errorHandling.checkCompunit(compUnit);
             //parser.printGrammerToFile();
 //            comparater comparater=new comparater("output.txt","output1.txt");
 //            comparater.compare();
-            llvm llvm=new llvm(compUnit);
-            llvm.generate();
+
+            if(errorHandling.errors.isEmpty()){
+                llvm llvm=new llvm(compUnit);
+                llvm.generate();
+            }
+
 
 
         } catch (IOException e) {
