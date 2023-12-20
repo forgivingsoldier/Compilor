@@ -93,7 +93,7 @@ public static void main(String[] args)throws Exception{
 
 我的结构按照实验顺序进行划分，分为词法分析，语法分析，语法树节点，符号表，错误处理和llvm生成，具体建包结构如下图：
 
-<img src="C:\Users\W\Documents\WeChat Files\wxid_4kinkczpo42922\FileStorage\Temp\1703042026922.png" alt="1703042026922" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/forgivingsoldier/image/main/teat/1703042026922.png" style="zoom:50%;" />
 
 在主函数中依次调用各类的方法，每一个部分接收上一个部分的输入，然后把输出传递给下一个部分，这样就可以方便的进行每一步单元测试，且一个模块的重构不会影响其他模块，主函数代码如下：
 
