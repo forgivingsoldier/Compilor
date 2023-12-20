@@ -2,8 +2,8 @@ package lexer;
 
 import java.util.HashMap;
 
-public class Map{
-    private static HashMap<String, type> reserved = new HashMap<String, type>(){
+public class Map {
+    private static HashMap<String, type> reserved = new HashMap<String, type>() {
         {
             put("const", type.CONSTTK);
             put("int", type.INTTK);
@@ -19,28 +19,28 @@ public class Map{
             put("for", type.FORTK);
         }
     };
-    private static HashMap<String,type> single_symbol = new HashMap<String, type>(){
-    {
-        put("+", type.PLUS);
-        put("-", type.MINU);
-        put("*", type.MULT);
-        put("!", type.NOT);
-        put("/", type.DIV);
-        put("%", type.MOD);
-        put("<", type.LSS);
-        put(">", type.GRE);
-        put("=", type.ASSIGN);
-        put(";", type.SEMICN);
-        put(",", type.COMMA);
-        put("(", type.LPARENT);
-        put(")", type.RPARENT);
-        put("[", type.LBRACK);
-        put("]", type.RBRACK);
-        put("{", type.LBRACE);
-        put("}", type.RBRACE);
-    }
-};
-    private static HashMap<String,type> double_symbol =new HashMap<String, type>(){
+    private static HashMap<String, type> single_symbol = new HashMap<String, type>() {
+        {
+            put("+", type.PLUS);
+            put("-", type.MINU);
+            put("*", type.MULT);
+            put("!", type.NOT);
+            put("/", type.DIV);
+            put("%", type.MOD);
+            put("<", type.LSS);
+            put(">", type.GRE);
+            put("=", type.ASSIGN);
+            put(";", type.SEMICN);
+            put(",", type.COMMA);
+            put("(", type.LPARENT);
+            put(")", type.RPARENT);
+            put("[", type.LBRACK);
+            put("]", type.RBRACK);
+            put("{", type.LBRACE);
+            put("}", type.RBRACE);
+        }
+    };
+    private static HashMap<String, type> double_symbol = new HashMap<String, type>() {
         {
             put("&&", type.AND);
             put("||", type.OR);
@@ -50,6 +50,7 @@ public class Map{
             put("!=", type.NEQ);
         }
     };
+
     public static HashMap<String, type> getReservedMap() {
         return reserved;
     }

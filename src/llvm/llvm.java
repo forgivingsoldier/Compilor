@@ -475,7 +475,8 @@ public class llvm {
             }
             Symbol symbol = new Symbol(regid, value);
             nowTable().putSymbol(varDef.ident.value, symbol);
-        } else {
+        }
+        else {
             //一维数组，有初值和无初值
             if (varDef.constExps.size() == 1) {
                 dim_depth = 1;
@@ -808,7 +809,7 @@ public class llvm {
                 stmt.cond.noLabel = stmt.nextLabel;
                 stmt.cond.nextLabel = stmt.nextLabel;
                 cond(stmt.cond);
-                //printf("br i1 %v" + stmt.cond.value + ", label %v" + stmt.stmtLabel + ", label %v" + stmt.nextLabel + "\n");
+
             } else {
                 printf("br label %v" + stmt.stmtLabel + "\n");
             }
@@ -846,9 +847,8 @@ public class llvm {
         // 'return' [Exp] ';' // 1.有Exp 2.无Exp
         else if (type.equals("RETURN")) {
             if (stmt.exp != null) {
-                //printf("ret i32 "+exp(stmt.exp)+"\n");
-                exp(stmt.exp);
 
+                exp(stmt.exp);
                 printf("ret i32 " + stmt.exp.value + "\n");
             }
         }
@@ -1296,7 +1296,7 @@ public class llvm {
                         lVal.AddrType = "i32";
                         regId += 2;
                     }
-                    //func(int a) {int a[],func(a[1])}
+                    //函数中的左值，1维数组取0维
                     else if (symbol.dim_num1 == 0 && lVal.exps.size() == 1) {
                         exp(lVal.exps.get(0));
                         printf("%v" + regId + " = load i32*, i32* *" + symbol.regId + "\n");

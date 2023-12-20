@@ -911,24 +911,6 @@ public class parser {
     }
 
     public AddExp AddExp() {
-//        AddExp addExp = null;
-//        token operator = null;
-//        MulExp mulExp = null;
-//        if (nowType.equals("LPARENT") || nowType.equals("PLUS") || nowType.equals("MINU") || nowType.equals("NOT") || nowType.equals("IDENFR") || nowType.equals("INTCON")) {
-//            mulExp = MulExp();
-//            if (nowType.equals("PLUS")) {
-//                operator = tokens.get(position - 1);
-//                nextTypeWithForward();
-//                addExp = AddExp();
-//
-//            } else if (nowType.equals("MINU")) {
-//                operator = tokens.get(position - 1);
-//                nextTypeWithForward();
-//                addExp = AddExp();
-//            }
-//        } else {
-//        }
-//        return new AddExp(mulExp, operator, addExp);
         MulExp left = MulExp(); // 解析一个基本的 MulExp
         AddExp result = new AddExp(left, null, null); // 创建一个初步的 AddExp 对象
 
@@ -943,21 +925,6 @@ public class parser {
     }
 
     public RelExp RelExp() {
-//        //模仿AddExp
-//        AddExp addExp = null;
-//        token operator = null;
-//        RelExp relExp = null;
-//        if (nowType.equals("LPARENT") || nowType.equals("PLUS") || nowType.equals("MINU") || nowType.equals("NOT") || nowType.equals("IDENFR") || nowType.equals("INTCON")) {
-//            addExp = AddExp();
-//            while (nowType.equals("LSS") || nowType.equals("GRE") || nowType.equals("LEQ") || nowType.equals("GEQ")) {
-//                operator = tokens.get(position - 1);
-//                nextTypeWithForward();
-//                relExp = RelExp();
-//            }
-//
-//        } else {
-//        }
-//        return new RelExp(addExp, operator, relExp);
         AddExp left = AddExp();
         RelExp result = new RelExp(left, null, null);
 
@@ -972,19 +939,6 @@ public class parser {
     }
 
     public EqExp EqExp() {
-//        RelExp relExp = null;
-//        token operator = null;
-//        EqExp eqExp = null;
-//        if (nowType.equals("LPARENT") || nowType.equals("PLUS") || nowType.equals("MINU") || nowType.equals("NOT") || nowType.equals("IDENFR") || nowType.equals("INTCON")) {
-//            relExp = RelExp();
-//            while (nowType.equals("EQL") || nowType.equals("NEQ")) {
-//                operator = tokens.get(position - 1);
-//                nextTypeWithForward();
-//                eqExp = EqExp();
-//            }
-//        } else {
-//        }
-//        return new EqExp(relExp, operator, eqExp);
         RelExp left = RelExp();
         EqExp result = new EqExp(left, null, null);
 
@@ -999,17 +953,6 @@ public class parser {
     }
 
     public LAndExp LAndExp() {
-//        LAndExp lAndExp = null;
-//        EqExp eqExp = null;
-//        if (nowType.equals("LPARENT") || nowType.equals("PLUS") || nowType.equals("MINU") || nowType.equals("NOT") || nowType.equals("IDENFR") || nowType.equals("INTCON")) {
-//            eqExp = EqExp();
-//            if (nowType.equals("AND")) {
-//                nextTypeWithForward();
-//                lAndExp = LAndExp();
-//            }
-//        } else {
-//        }
-//        return new LAndExp(eqExp, lAndExp);
         EqExp left = EqExp();
         LAndExp result = new LAndExp(left, null);
 
@@ -1023,17 +966,6 @@ public class parser {
     }
 
     public LOrExp LOrExp() {
-//        LAndExp lAndExp = null;
-//        LOrExp lOrExp = null;
-//        if (nowType.equals("LPARENT") || nowType.equals("PLUS") || nowType.equals("MINU") || nowType.equals("NOT") || nowType.equals("IDENFR") || nowType.equals("INTCON")) {
-//            lAndExp = LAndExp();
-//            if (nowType.equals("OR")) {
-//                nextTypeWithForward();
-//                lOrExp = LOrExp();
-//            }
-//        } else {
-//        }
-//        return new LOrExp(lAndExp, lOrExp);
         LAndExp left = LAndExp();
         LOrExp result = new LOrExp(left, null);
 
@@ -1060,27 +992,6 @@ public class parser {
             } else {
                 System.out.println(grammer.get(i).type + " " + grammer.get(i).value);
             }
-        }
-    }
-
-    public void printGrammerToFile() {
-        File file = new File("lexer.txt");
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            java.io.FileWriter fileWriter = new java.io.FileWriter(file);
-            for (int i = 1; i < grammer.size(); i++) {
-                if (grammer.get(i).type == type.GRAMMER) {
-                    fileWriter.write(grammer.get(i).value + "\n");
-                } else {
-                    fileWriter.write(grammer.get(i).type + " " + grammer.get(i).value + "\n");
-                }
-            }
-            fileWriter.flush();
-            fileWriter.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
